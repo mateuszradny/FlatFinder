@@ -1,0 +1,8 @@
+﻿textarea.form-control {
+    height: 100%;
+}
+
+.md-form.checkbox-group label {
+    position: initial !important;
+    margin-left: 3px;
+}

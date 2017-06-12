@@ -1,0 +1,31 @@
+﻿<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="card center-block">
+                <div class="card-block">
+                    <div class="form-header info-color-dark">
+                        <h3>Login</h3>
+                    </div>
+                    <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+                        <div class="form-group md-form" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                            <label for="email" data-error="Email is required">Email</label>
+                            <input type="email" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel" required />
+                            <div *ngIf="f.submitted && !email.valid" class="red-text">Email is required</div>
+                        </div>
+                        <div class="form-group md-form" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+                            <div *ngIf="f.submitted && !password.valid" class="red-text">Password is required</div>
+                        </div>
+                        <div class="form-group">
+                            <button [disabled]="loading" class="btn btn-primary">Login</button>
+                            <a [routerLink]="['/register']" class="btn btn-link">Register</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

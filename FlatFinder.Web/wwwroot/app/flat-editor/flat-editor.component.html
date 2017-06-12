@@ -1,0 +1,77 @@
+﻿<br />
+<div class="card center-block">
+    <div class="card-block">
+        <div class="form-header info-color-dark">
+            <h3>{{isCreateForm ? 'New flat' : 'Update flat'}}</h3>
+        </div>
+        <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group md-form" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+                            <label for="name" [ngClass]="{ 'active': name.value != null }">Title</label>
+                            <input type="text" class="form-control" name="name" [(ngModel)]="flat.name" #name="ngModel" required />
+                            <div *ngIf="f.submitted && !name.valid" class="red-text">Title is required</div>
+                        </div>
+                        <div class="form-group md-form" [ngClass]="{ 'has-error': f.submitted && !postCode.valid }">
+                            <label for="postCode" [ngClass]="{ 'active': postCode.value != null }">Post code</label>
+                            <input type="text" class="form-control" name="postCode" [(ngModel)]="flat.postCode" #postCode="ngModel" required />
+                            <div *ngIf="f.submitted && !postCode.valid" class="red-text">Post code is required</div>
+                        </div>
+                        <div class="form-group md-form" [ngClass]="{ 'has-error': f.submitted && !city.valid }">
+                            <label for="city" [ngClass]="{ 'active': city.value != null }">City</label>
+                            <input type="text" class="form-control" name="city" [(ngModel)]="flat.city" #city="ngModel" required />
+                            <div *ngIf="f.submitted && !city.valid" class="red-text">City is required</div>
+                        </div>
+                        <div class="form-group md-form" [ngClass]="{ 'has-error': f.submitted && !address.valid }">
+                            <label for="address" [ngClass]="{ 'active': address.value != null }">Address</label>
+                            <input type="text" class="form-control" name="address" [(ngModel)]="flat.address" #address="ngModel" required />
+                            <div *ngIf="f.submitted && !address.valid" class="red-text">Address is required</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group md-form" [ngClass]="{ 'has-error': f.submitted && !area.valid }">
+                            <label for="area" [ngClass]="{ 'active': area.value != null }">Area</label>
+                            <input type="number" class="form-control" name="area" [(ngModel)]="flat.area" #area="ngModel" required />
+                            <div *ngIf="f.submitted && !area.valid" class="red-text">Area is required</div>
+                        </div>
+                        <div class="form-group md-form" [ngClass]="{ 'has-error': f.submitted && !price.valid }">
+                            <label for="price" [ngClass]="{ 'active': price.value != null }">Price</label>
+                            <input type="number" class="form-control" name="price" [(ngModel)]="flat.price" #price="ngModel" required />
+                            <div *ngIf="f.submitted && !price.valid" class="red-text">Price is required</div>
+                        </div>
+                        <div class="form-group md-form" [ngClass]="{ 'has-error': f.submitted && !numberOfRooms.valid }">
+                            <label for="numberOfRooms" [ngClass]="{ 'active': numberOfRooms.value != null }">Number of rooms</label>
+                            <input type="number" class="form-control" name="numberOfRooms" [(ngModel)]="flat.numberOfRooms" #numberOfRooms="ngModel" required />
+                            <div *ngIf="f.submitted && !numberOfRooms.valid" class="red-text">Number of rooms is required</div>
+                        </div>
+                        <div class="form-group md-form" [ngClass]="{ 'has-error': f.submitted && !floor.valid }">
+                            <label for="floor" [ngClass]="{ 'active': floor.value != null }">Floor</label>
+                            <input type="number" class="form-control" name="floor" [(ngModel)]="flat.floor" #floor="ngModel" required />
+                            <div *ngIf="f.submitted && !floor.valid" class="red-text">Floor is required</div>
+                        </div>
+                        <div class="form-group md-form checkbox-group" [ngClass]="{ 'has-error': f.submitted && !hasBalcony.valid }">
+                            <input type="checkbox" name="hasBalcony" [(ngModel)]="flat.hasBalcony" #hasBalcony="ngModel" />
+                            <label for="hasBalcony">Has balcony</label>
+                            <div *ngIf="f.submitted && !hasBalcony.valid" class="red-text">Has balcony is required</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group md-form" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
+                            <label for="description" [ngClass]="{ 'active': description.value != null }">Description</label>
+                            <textarea class="form-control md-textarea" name="description" [(ngModel)]="flat.description" #description="ngModel" rows="15" required></textarea>
+                            <div *ngIf="f.submitted && !description.valid" class="red-text">Description is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group text-center">
+                        <button [disabled]="loading" class="btn btn-primary">Save</button>
+                        <a [routerLink]="['']" class="btn btn-danger">Back</a>
+                        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

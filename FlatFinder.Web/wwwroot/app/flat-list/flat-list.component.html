@@ -1,0 +1,86 @@
+﻿<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card center-block">
+                <div class="card-block">
+                    <div class="card-header primary-color-dark white-text">
+                        Recently viewed flats
+                    </div><br />
+                    <div *ngFor="let flat of recentlyViewed" class="media mb-1">
+                        <a class="media-left waves-light">
+                            <img src="../../img/home.png" />
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a [routerLink]="['/flat-viewer', flat.id]">{{flat.name}}</a></h4>
+                            <h6>{{flat.postCode}} {{flat.city}} | {{flat.address}} | {{flat.createdOn | date: 'dd.MM.yyyy hh:mm'}}</h6>
+                            <span class="badge indigo">{{flat.area}} m<sup>2</sup></span>
+                            <span class="badge indigo">{{flat.numberOfRooms}} room(s)</span>
+                            <span class="badge indigo">{{flat.floor}} floor</span>
+                            <span *ngIf="flat.hasBalcony" class="badge indigo">Balcony</span>
+                            <h2><span class="badge green">{{flat.price}} PLN</span></h2>
+                        </div>
+                    </div>
+                    <div class="card-header primary-color-dark white-text">
+                        Flat offers
+                    </div><br />
+                    <form class="form-inline" (ngSubmit)="f.form.valid && search()" #f="ngForm" novalidate>
+                        <div class="form-group md-form" [ngClass]="{ 'has-error': f.submitted && !minArea.valid }">
+                            <label for="minArea" [ngClass]="{ 'active': minArea.value != null }">Min area</label>
+                            <input type="number" class="form-control" name="minArea" [(ngModel)]="query.minArea" (change)="search()" #minArea="ngModel" />
+                            <div *ngIf="f.submitted && !minArea.valid" class="red-text"></div>
+                        </div>
+                        <div class="form-group md-form" [ngClass]="{ 'has-error': f.submitted && !maxArea.valid }">
+                            <label for="maxArea" [ngClass]="{ 'active': maxArea.value != null }">Max area</label>
+                            <input type="number" class="form-control" name="maxArea" [(ngModel)]="query.maxArea" (change)="search()" #maxArea="ngModel" />
+                            <div *ngIf="f.submitted && !maxArea.valid" class="red-text"></div>
+                        </div>
+                        <div class="form-group md-form" [ngClass]="{ 'has-error': f.submitted && !minNumberOfRooms.valid }">
+                            <label for="minNumberOfRooms" [ngClass]="{ 'active': minNumberOfRooms.value != null }">Min number of rooms</label>
+                            <input type="number" class="form-control" name="minNumberOfRooms" [(ngModel)]="query.minNumberOfRooms" (change)="search()" #minNumberOfRooms="ngModel" />
+                            <div *ngIf="f.submitted && !minNumberOfRooms.valid" class="red-text"></div>
+                        </div>
+                        <div class="form-group md-form" [ngClass]="{ 'has-error': f.submitted && !maxNumberOfRooms.valid }">
+                            <label for="maxNumberOfRooms" [ngClass]="{ 'active': maxNumberOfRooms.value != null }">Max number of rooms</label>
+                            <input type="number" class="form-control" name="maxNumberOfRooms" [(ngModel)]="query.maxNumberOfRooms" (change)="search()" #maxNumberOfRooms="ngModel" />
+                            <div *ngIf="f.submitted && !maxNumberOfRooms.valid" class="red-text"></div>
+                        </div>
+                        <div class="form-group md-form" [ngClass]="{ 'has-error': f.submitted && !minPrice.valid }">
+                            <label for="minPrice" [ngClass]="{ 'active': minPrice.value != null }">Min price</label>
+                            <input type="number" class="form-control" name="minPrice" [(ngModel)]="query.minPrice" (change)="search()" #minPrice="ngModel" />
+                            <div *ngIf="f.submitted && !minPrice.valid" class="red-text"></div>
+                        </div>
+                        <div class="form-group md-form" [ngClass]="{ 'has-error': f.submitted && !maxPrice.valid }">
+                            <label for="maxPrice" [ngClass]="{ 'active': maxPrice.value != null }">Max price</label>
+                            <input type="number" class="form-control" name="maxPrice" [(ngModel)]="query.maxPrice" (change)="search()" #maxPrice="ngModel" />
+                            <div *ngIf="f.submitted && !maxPrice.valid" class="red-text"></div>
+                        </div>
+                        <div class="form-group md-form checkbox-group" [ngClass]="{ 'has-error': f.submitted && !hasBalcony.valid }">
+                            <input type="checkbox" name="hasBalcony" [(ngModel)]="query.hasBalcony" (change)="search()" #hasBalcony="ngModel" />
+                            <label for="hasBalcony">Has balcony</label>
+                            <div *ngIf="f.submitted && !hasBalcony.valid" class="red-text"></div>
+                        </div>
+                        <div class="form-group">
+                            <a class="btn btn-primary btn-sm" (click)="clearFilters()">Clear</a>
+                        </div>
+                    </form>
+                    <br />
+                    <div *ngFor="let flat of flats" class="media mb-1">
+                        <a class="media-left waves-light">
+                            <img class="rounded-circle" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-13.jpg" alt="Generic placeholder image">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a [routerLink]="['/flat-viewer', flat.id]">{{flat.name}}</a></h4>
+                            <h6>{{flat.postCode}} {{flat.city}} | {{flat.address}} | {{flat.createdOn | date: 'dd.MM.yyyy hh:mm'}}</h6>
+                            <span class="badge indigo">{{flat.area}} m<sup>2</sup></span>
+                            <span class="badge indigo">{{flat.numberOfRooms}} room(s)</span>
+                            <span class="badge indigo">{{flat.floor}} floor</span>
+                            <span *ngIf="flat.hasBalcony" class="badge indigo">Balcony</span>
+                            <h2><span class="badge green">{{flat.price}} PLN</span></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

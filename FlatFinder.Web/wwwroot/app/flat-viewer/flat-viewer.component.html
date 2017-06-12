@@ -1,0 +1,66 @@
+﻿<br />
+<div class="card center-block">
+    <div class="card-block">
+        <div class="form-header info-color-dark">
+            <h3>{{flat.name}}</h3>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Post code:</td>
+                                <td><strong>{{flat.postCode}}</strong></td>
+                                <td>Price:</td>
+                                <td><strong>{{flat.price}} PLN</strong></td>
+                            </tr>
+                            <tr>
+                                <td>City:</td>
+                                <td><strong>{{flat.city}}</strong></td>
+                                <td>Area:</td>
+                                <td><strong>{{flat.area}} m<sup>2</sup></strong></td>
+                            </tr>
+                            <tr>
+                                <td>Address:</td>
+                                <td><strong>{{flat.address}}</strong></td>
+                                <td>Number of rooms:</td>
+                                <td><strong>{{flat.numberOfRooms}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Added on:</td>
+                                <td><strong>{{flat.createdOn | date: 'dd.MM.yyyy hh:mm'}}</strong></td>
+                                <td>Floor:</td>
+                                <td><strong>{{flat.floor}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Is sold:</td>
+                                <td><strong>{{flat.isSold ? 'Yes' : 'No'}}</strong></td>
+                                <td>Has balcony:</td>
+                                <td><strong>{{flat.hasBalcony ? 'Yes' : 'No'}}</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {{flat.description}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group text-center">
+                    <span *ngIf="user && user.id == flat.ownerId">
+                        <a class="btn btn-primary" (click)="setAsSold()">Set as sold</a>
+                        <a [routerLink]="['/flat-editor', flat.id]" class="btn btn-primary">Update</a>
+                        <button class="btn btn-danger" (click)="remove()">Remove</button>
+                    </span>
+                    <span *ngIf="user && user.id != flat.ownerId">
+                        <button class="btn btn-default" (click)="addOffer()">Want to buy!</button>
+                    </span>
+                    <a [routerLink]="['']" class="btn btn-default">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

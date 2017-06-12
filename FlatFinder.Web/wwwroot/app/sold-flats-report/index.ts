@@ -1,0 +1,1 @@
+﻿export * from './sold-flats-report.component';

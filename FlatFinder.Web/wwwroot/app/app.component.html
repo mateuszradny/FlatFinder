@@ -1,0 +1,43 @@
+﻿<nav class="navbar navbar-toggleable-md navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" [routerLink]="['']">
+            <strong>Flat Finder</strong>
+        </a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li *ngIf="user == null" class="nav-item">
+                    <a class="nav-link waves-effect waves-light" [routerLink]="['/login']"><i class="fa fa-sign-in"></i> login</a>
+                </li>
+                <li *ngIf="user == null" class="nav-item">
+                    <a class="nav-link waves-effect waves-light" [routerLink]="['/register']"><i class="fa fa-user-plus"></i> register</a>
+                </li>
+                <li *ngIf="user != null">
+                    <a class="navbar-brand" [routerLink]="['']">
+                        <strong>Welcome {{user.email}}</strong>
+                    </a>
+                </li>
+                <li *ngIf="user != null && user.roles.indexOf('Admin') != -1" class="nav-item">
+                    <a class="nav-link waves-effect waves-light" [routerLink]="['/user-list']"><i class="fa fa-gear"></i> admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light" [routerLink]="['/flat-editor', '']"><i class="fa fa-plus"></i> add flat</a>
+                </li>
+                <li *ngIf="user != null" class="nav-item">
+                    <a class="nav-link waves-effect waves-light" [routerLink]="['/offer-list']"><i class="fa fa-money"></i> purchase offer <span *ngIf="newOfferCount" class="badge red">{{newOfferCount}}</span></a>
+                </li>
+                <li *ngIf="user != null" class="nav-item">
+                    <a class="nav-link waves-effect waves-light" [routerLink]="['/login']"><i class="fa fa-sign-out"></i> logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<br>
+
+<div class="container">
+    <alert></alert>
+    <div class="row">
+        <router-outlet></router-outlet>
+    </div>
+</div>

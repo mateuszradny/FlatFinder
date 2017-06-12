@@ -1,0 +1,48 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card center-block">
+                <div class="card-header danger-color-dark white-text">
+                    Sold Flats Report
+                </div>
+                <div class="card-block">
+                    <form class="form-inline" (ngSubmit)="f.form.valid && generate()" #f="ngForm" novalidate>
+                        <div class="form-group md-form" [ngClass]="{ 'has-error': f.submitted && !from.valid }">
+                            <label for="from" [ngClass]="{ 'active': from.value != null }">From</label>
+                            <input type="date" class="form-control" name="from" [(ngModel)]="fromDate" #from="ngModel" required />
+                            <div *ngIf="f.submitted && !from.valid" class="red-text">From date is required</div>
+                        </div>
+                        <div class="form-group md-form" [ngClass]="{ 'has-error': f.submitted && !to.valid }">
+                            <label for="to" [ngClass]="{ 'active': to.value != null }">To</label>
+                            <input type="date" class="form-control" name="to" [(ngModel)]="toDate" #to="ngModel" required />
+                            <div *ngIf="f.submitted && !to.valid" class="red-text">To date is required</div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-sm">Generate</button>
+                        </div>
+                    </form>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>From date</th>
+                                <th>To date</th>
+                                <th>Count</th>
+                                <th>Average Price</th>
+                                <th>Average Area</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{report.from | date: 'dd.MM.yyyy'}}</td>
+                                <td>{{report.to | date: 'dd.MM.yyyy'}}</td>
+                                <td>{{report.count}}</td>
+                                <td>{{report.averagePrice}}</td>
+                                <td>{{report.averageArea}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+﻿<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card center-block">
+                <div class="card-block">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Flat</th>
+                                <th>User</th>
+                                <th>Phone</th>
+                                <th>Created On</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let offer of offers">
+                            <tr>
+                                <td scope="row"><a [routerLink]="['/flat-viewer', offer.flatId]">{{offer.flatName}}</a></td>
+                                <td>{{offer.userEmail}}</td>
+                                <td>{{offer.userPhone}}</td>
+                                <td>{{offer.createdOn | date: 'dd.MM.yyyy hh:mm'}}</td>
+                                <td class="text-right">
+                                    <button type="button" class="btn btn-danger btn-sm" (click)="remove(offer.offerId)">Remove</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

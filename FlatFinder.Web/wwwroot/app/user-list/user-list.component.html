@@ -1,0 +1,38 @@
+﻿<br />
+<div class="container">
+    <div class="row">
+        <sold-flats-report></sold-flats-report>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card center-block">
+                <div class="card-header danger-color-dark white-text">
+                    Users
+                </div>
+                <div class="card-block">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Email</th>
+                                <th>Phone number</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let user of users">
+                            <tr>
+                                <td scope="row">{{user.id}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.phoneNumber}}</td>
+                                <td class="text-right">
+                                    <button *ngIf="user != null && user.id != currentUser.id" type="button" class="btn btn-danger btn-sm" (click)="remove(user.id)">Remove</button>
+                                    <a [routerLink]="['/user-change-password', user.id]" class="btn btn-primary btn-sm">Change password</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
